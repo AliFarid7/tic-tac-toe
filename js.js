@@ -34,7 +34,7 @@ function createPlayer(name, marker) {
 };
 
 const gameFlow = (() => {
-
+    let currentMarker = 'X';
     function checkWin() {
         const board = gameBoard.getBoardStatus();
         const winCon = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
@@ -57,28 +57,25 @@ const gameFlow = (() => {
     };
 
     function switchTurn() {
-        const board = gameBoard.getBoardStatus();
-        let xTurns = 0;
-        let oTurns = 0;
-        for (let space of board) {
-            if (space === 'X') xTurns++;
-            if (space === 'O') oTurns++;
+        currentMarker = currentMarker === 'X' ? 'O' : 'X';
         };
-        return xTurns > oTurns ? 'O' : 'X';
-    };
 
-    function playTurn(playerMarker, index) {
+    function playTurn(index) {
         if (gameBoard.checkSpaceAvailability(index) === "Full") {
             return "Space already taken!";
         }
-        gameBoard.placeMarker(index, playerMarker);
+        gameBoard.placeMarker(index, currentMarker);
+
         if (checkWin()) {
             return "Game Over. You Win!";
         }
         else if (checkTie()) {
             return "It's a Tie!";
         };
-        switchTurn();
+
+        if(switchTurn(currentMarker)){
+            return `Next player: ${currentMarker}`;
+        };
     };
 
     return {
@@ -90,7 +87,9 @@ const gameFlow = (() => {
     }
 })();
 
+const gameDisplay = (() => {
+
+    })();
+
 const player1 = createPlayer("Player!", "X");
 const player2 = createPlayer("Player2", "O");
-const play = playTurn("Marker", "index");
-
