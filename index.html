@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    
+    <div id="container">
+        <form method="post">
+            <div class="form-container">
+                <fieldset>
+                    <div>
+                        <label for="player1_name">Player 1:</label>
+                        <input type="text" id="player1_name" name="player1_name" required maxlength="70">
+                    </div>
+                    <div>
+                        <label for="player2_name">Player 2:</label>
+                        <input type="text" id="player2_name" name="player2_name" required maxlength="70">
+                    </div>
+                    <button type="button">Start Game</button>
+                </fieldset>
+            </div>
+        </form>
+        <div id="gameboard"></div>
+    </div>
     <script src="js.js"></script>
 </body>
+
 </html>
